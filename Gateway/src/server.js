@@ -6,6 +6,13 @@ const app = express();
 
 app.use(morgar("dev"));
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://star-wars-frontend-mu.vercel.app");
+    res.setHeader("Access-Control-Allow-Methods", "GET");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
+
 app.use(
     "/characters",
     createProxyMiddleware({
